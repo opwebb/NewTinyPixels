@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ - TinyPixels</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="faq.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <nav class="nav">
+                <a href="/" class="logo">
+                    <span class="gradient-text">TinyPixels</span>
+                </a>
+                <div class="nav-links">
+                    <button id="themeToggle" class="theme-toggle">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                    <a href="/blog.html" class="nav-link">Blog</a>
+                    <a href="/faq.html" class="nav-link active">FAQ</a>
+                    <a href="/about.html" class="nav-link">About</a>
+                    <a href="/contact.html" class="nav-link">Contact</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main class="faq-main">
+        <div class="container">
+            <h1 class="page-title">Frequently Asked Questions</h1>
+            
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <button class="faq-question">
+                        What image formats does TinyPixels support?
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>TinyPixels supports all major image formats including JPEG, PNG, WebP, and GIF. You can also convert between these formats during compression.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        Is there a file size limit?
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>TinyPixels can handle images up to 50MB in size. For larger files, we recommend splitting them into smaller parts.</p>
+                    </div>
+                </div>
+
+                <!-- Add more FAQ items as needed -->
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <!-- ...existing footer content... -->
+    </footer>
+
+    <script src="main.js"></script>
+    <script src="faq.js"></script>
+</body>
+</html>
