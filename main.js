@@ -19,22 +19,8 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentFiles = [];
     let processedBlobs = [];
 
-    // Handle tab switching
-    const tabs = document.querySelectorAll('.tab-button');
-    const tabContents = document.querySelectorAll('.tab-content');
-
-    tabs.forEach(tab => {
-        tab.addEventListener('click', () => {
-            // Remove active class from all tabs and contents
-            tabs.forEach(t => t.classList.remove('active'));
-            tabContents.forEach(c => c.classList.remove('active'));
-
-            // Add active class to clicked tab and corresponding content
-            tab.classList.add('active');
-            const tabId = `${tab.dataset.tab}-tab`;
-            document.getElementById(tabId).classList.add('active');
-        });
-    });
+    // Initialize tabs
+    initTabs();
 
     // Update quality value display
     qualitySlider.addEventListener('input', (e) => {
@@ -65,6 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
     fileInput.addEventListener('change', (e) => {
         if (e.target.files.length > 0) {
             handleFiles(Array.from(e.target.files));
+            showSettings();
         }
     });
 
@@ -272,4 +259,66 @@ document.addEventListener('DOMContentLoaded', () => {
             mobileMenuBtn.querySelector('i').classList.remove('fa-times');
         }
     });
+
+    // Add dropdown functionality for mobile
+    const dropdownToggle = document.querySelector('.dropdown-toggle');
+    const dropdown = document.querySelector('.dropdown');
+
+    dropdownToggle.addEventListener('click', (e) => {
+        if (window.innerWidth <= 768) {
+            e.preventDefault();
+            dropdown.classList.toggle('active');
+            const icon = dropdownToggle.querySelector('i');
+            icon.classList.toggle('fa-chevron-down');
+            icon.classList.toggle('fa-chevron-up');
+        }
+    });
+
+    // Add smooth scrolling for feature links
+    document.querySelectorAll('.dropdown-item').forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const targetId = link.getAttribute('href');
+            const targetElement = document.querySelector(targetId);
+            
+            if (targetElement) {
+                targetElement.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'center'
+                });
+                
+                // Highlight the section briefly
+                targetElement.classList.add('highlight');
+                setTimeout(() => {
+                    targetElement.classList.remove('highlight');
+                }, 2000);
+            }
+        });
+    });
 });
+
+// Tab switching functionality
+function initTabs() {
+    const tabButtons = document.querySelectorAll('.tab-button');
+    const tabContents = document.querySelectorAll('.tab-content');
+
+    tabButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const targetTabId = button.getAttribute('data-tab');
+
+            // Remove active class from all buttons and contents
+            tabButtons.forEach(btn => btn.classList.remove('active'));
+            tabContents.forEach(content => content.classList.remove('active'));
+
+            // Add active class to current button and content
+            button.classList.add('active');
+            document.getElementById(`${targetTabId}-tab`).classList.add('active');
+        });
+    });
+}
+
+// Show settings panel when files are added
+function showSettings() {
+    const settingsPanel = document.getElementById('settings');
+    settingsPanel.classList.remove('hidden');
+}

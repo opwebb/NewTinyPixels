@@ -210,28 +210,33 @@ body {
     margin-bottom: 2rem;
 }
 
-.dropzone {
-    border: 2px dashed var(--border);
-    border-radius: var(--radius);
+.dropzone-section {
     padding: 2rem;
-    text-align: center;
-    cursor: pointer;
-    transition: var(--transition);
-    margin-bottom: 1.5rem;
-    background-color: var(--card-bg);
 }
 
-.dropzone:hover {
-    border-color: var(--primary);
+.dropzone {
+    min-height: 200px;
+    padding: 2rem;
+    border: 2px dashed #ccc;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.dropzone.drag-over {
+    border-color: #007AFF;
+    background-color: rgba(0, 122, 255, 0.1);
 }
 
 .dropzone-content {
-    pointer-events: none;
+    text-align: center;
 }
 
 .upload-icon {
     font-size: 3rem;
-    color: var(--text-muted);
+    color: #007AFF;
     margin-bottom: 1rem;
 }
 
@@ -251,38 +256,15 @@ body {
 
 /* Settings Panel */
 .settings {
-    background: var(--settings-bg);
-    border-radius: var(--radius);
+    margin-top: 2rem;
     padding: 1.5rem;
-    margin-bottom: 1.5rem;
+    border-radius: 8px;
+    background: var(--settings-bg);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .settings.hidden {
     display: none;
-}
-
-.tabs {
-    display: flex;
-    gap: 0.5rem;
-    margin-bottom: 1.5rem;
-    border-bottom: 1px solid var(--border);
-    padding-bottom: 0.5rem;
-}
-
-.tab-button {
-    padding: 0.5rem 1rem;
-    border: none;
-    background: none;
-    cursor: pointer;
-    font-weight: 500;
-    color: var(--text-muted);
-    transition: var(--transition);
-    border-radius: var(--radius);
-}
-
-.tab-button.active {
-    color: var(--primary);
-    background: rgba(0, 122, 255, 0.1);
 }
 
 .tab-content {
@@ -293,7 +275,20 @@ body {
     display: block;
 }
 
-/* Form Elements */
+.tab-button {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 4px;
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.tab-button.active {
+    background: var(--primary);
+    color: white;
+}
+
 .settings-group {
     margin-bottom: 1.5rem;
 }
@@ -347,7 +342,7 @@ body {
 
 .dimensions-group {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
     gap: 1rem;
 }
 
@@ -362,6 +357,7 @@ body {
     display: flex;
     gap: 1rem;
     margin-top: 1.5rem;
+    flex-wrap: wrap;
 }
 
 @media (max-width: 768px) {
@@ -382,6 +378,8 @@ body {
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
+    flex: 1;
+    min-width: 120px;
 }
 
 .button.primary {
@@ -413,12 +411,18 @@ body {
 /* Preview Grid */
 .preview-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
     margin-top: 2rem;
 }
 
 @media (max-width: 768px) {
+    .preview-grid {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    }
+}
+
+@media (max-width: 480px) {
     .preview-grid {
         grid-template-columns: 1fr;
     }
@@ -477,8 +481,10 @@ body {
 
 .features-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 2rem;
+    margin: 0 auto;
+    max-width: 1400px;
 }
 
 @media (max-width: 768px) {
@@ -493,6 +499,10 @@ body {
     border-radius: var(--radius);
     text-align: center;
     transition: var(--transition);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .feature-card:hover {
@@ -513,6 +523,21 @@ body {
 
 .feature-card p {
     color: var(--text-muted);
+    line-height: 1.6;
+    margin-top: 1rem;
+    font-size: 1rem;
+}
+
+/* Feature highlight animation */
+@keyframes highlightFeature {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+    100% { transform: translateY(0); }
+}
+
+.feature-card.highlight {
+    animation: highlightFeature 1s ease;
+    box-shadow: 0 0 20px rgba(0, 122, 255, 0.3);
 }
 
 /* Footer */
@@ -637,6 +662,47 @@ body {
     .preview-grid {
         grid-template-columns: 1fr;
     }
+
+    .dropzone-section {
+        padding: 1rem;
+    }
+
+    .dropzone {
+        min-height: 150px;
+        padding: 1rem;
+    }
+
+    .settings {
+        padding: 1rem;
+    }
+
+    .tab-button {
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .dropzone {
+        min-height: 120px;
+    }
+
+    .upload-icon {
+        font-size: 2rem;
+    }
+
+    .tabs {
+        flex-direction: column;
+    }
+
+    .tab-button {
+        width: 100%;
+        text-align: center;
+    }
+
+    .preview-grid {
+        grid-template-columns: 1fr;
+    }
 }
 
 /* Animations */
@@ -725,4 +791,87 @@ body {
 
 .theme-toggle:hover {
     background-color: var(--border);
+}
+
+/* Dropdown Menu Styles */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-toggle {
+    background: none;
+    border: none;
+    font-size: inherit;
+    cursor: pointer;
+    padding: 0.5rem 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--text);
+}
+
+.dropdown-toggle i {
+    font-size: 0.8em;
+    transition: transform 0.3s ease;
+}
+
+.dropdown:hover .dropdown-toggle i {
+    transform: rotate(180deg);
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    min-width: 200px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+    z-index: 100;
+}
+
+.dropdown:hover .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.dropdown-item {
+    display: block;
+    padding: 0.75rem 1rem;
+    color: var(--text);
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.dropdown-item:hover {
+    background-color: var(--border);
+}
+
+/* Mobile Dropdown Adjustments */
+@media (max-width: 768px) {
+    .dropdown-menu {
+        position: static;
+        box-shadow: none;
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+        display: none;
+        background: var(--background);
+        padding-left: 1rem;
+    }
+
+    .dropdown.active .dropdown-menu {
+        display: block;
+    }
+
+    .dropdown-toggle {
+        width: 100%;
+        justify-content: space-between;
+    }
 }
