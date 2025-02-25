@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FAQ - TinyPixels</title>
+    <title>FAQ - TinyPixels Image Optimization</title>
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="faq.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
@@ -28,38 +27,297 @@
         </div>
     </header>
 
-    <main class="faq-main">
+    <main>
         <div class="container">
-            <h1 class="page-title">Frequently Asked Questions</h1>
-            
-            <div class="faq-grid">
-                <div class="faq-item">
-                    <button class="faq-question">
-                        What image formats does TinyPixels support?
-                        <i class="fas fa-chevron-down"></i>
-                    </button>
-                    <div class="faq-answer">
-                        <p>TinyPixels supports all major image formats including JPEG, PNG, WebP, and GIF. You can also convert between these formats during compression.</p>
+            <a href="/" class="back-home-btn">
+                <i class="fas fa-arrow-left"></i>
+                Back to Home
+            </a>
+            <section class="hero">
+                <div class="container">
+                    <h1 class="hero-title">Frequently Asked Questions</h1>
+                    <p class="hero-description">Find answers to common questions about TinyPixels image optimization</p>
+                </div>
+            </section>
+
+            <section class="faq-section">
+                <div class="container">
+                    <div class="faq-grid">
+                        <div class="faq-category">
+                            <h2><i class="fas fa-compress"></i> Image Compression</h2>
+                            <div class="faq-item">
+                                <h3>How does TinyPixels compress images?</h3>
+                                <p>We use advanced compression algorithms that analyze image content to remove redundant data while preserving visual quality. Our smart compression:
+                                    <ul>
+                                        <li>Optimizes color palettes</li>
+                                        <li>Removes unnecessary metadata</li>
+                                        <li>Applies content-aware compression</li>
+                                        <li>Uses modern formats like WebP when possible</li>
+                                    </ul>
+                                </p>
+                            </div>
+                            <div class="faq-item">
+                                <h3>What's the maximum file size I can process?</h3>
+                                <p>Since all processing happens in your browser, the limit depends on your device's memory. Generally, we recommend:
+                                    <ul>
+                                        <li>Individual files up to 50MB</li>
+                                        <li>Total batch size up to 500MB</li>
+                                        <li>Up to 100 images per batch</li>
+                                    </ul>
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="faq-category">
+                            <h2><i class="fas fa-shield-alt"></i> Privacy & Security</h2>
+                            <div class="faq-item">
+                                <h3>Are my images safe?</h3>
+                                <p>Absolutely! TinyPixels processes everything locally in your browser:
+                                    <ul>
+                                        <li>No server uploads required</li>
+                                        <li>Images never leave your device</li>
+                                        <li>No data collection or storage</li>
+                                        <li>Open-source processing algorithms</li>
+                                    </ul>
+                                </p>
+                            </div>
+                            <div class="faq-item">
+                                <h3>Do you store any user data?</h3>
+                                <p>No. We only use essential cookies for site functionality. We don't:
+                                    <ul>
+                                        <li>Store your images</li>
+                                        <li>Track processing history</li>
+                                        <li>Require user accounts</li>
+                                        <li>Share any information with third parties</li>
+                                    </ul>
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="faq-category">
+                            <h2><i class="fas fa-file-image"></i> File Formats</h2>
+                            <div class="faq-item">
+                                <h3>Which formats are supported?</h3>
+                                <p>We support all major image formats:
+                                    <ul>
+                                        <li>Input: JPEG, PNG, WebP, GIF, BMP, TIFF</li>
+                                        <li>Output: JPEG, PNG, WebP, AVIF, HEIC</li>
+                                        <li>Animated GIF support</li>
+                                        <li>RAW file conversion</li>
+                                    </ul>
+                                </p>
+                            </div>
+                            <div class="faq-item">
+                                <h3>Which format should I choose?</h3>
+                                <p>Recommended formats for different uses:
+                                    <ul>
+                                        <li>Photos: JPEG or WebP</li>
+                                        <li>Logos/Graphics: PNG or SVG</li>
+                                        <li>Web Images: WebP with JPEG fallback</li>
+                                        <li>Modern Browsers: AVIF for best compression</li>
+                                    </ul>
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="faq-category">
+                            <h2><i class="fas fa-sliders-h"></i> Usage & Features</h2>
+                            <div class="faq-item">
+                                <h3>How do I batch process images?</h3>
+                                <p>Batch processing is simple:
+                                    <ul>
+                                        <li>Drag multiple files into the dropzone</li>
+                                        <li>Set desired options once for all images</li>
+                                        <li>Click "Process Images"</li>
+                                        <li>Download individually or as ZIP</li>
+                                    </ul>
+                                </p>
+                            </div>
+                            <div class="faq-item">
+                                <h3>What are the quality settings?</h3>
+                                <p>Our quality settings are optimized for different needs:
+                                    <ul>
+                                        <li>Maximum (100%): Lossless compression</li>
+                                        <li>High (80%): Recommended for photos</li>
+                                        <li>Medium (60%): Good for web images</li>
+                                        <li>Low (40%): Maximum compression</li>
+                                    </ul>
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="faq-category">
+                            <h2><i class="fas fa-wrench"></i> Technical Support</h2>
+                            <div class="faq-item">
+                                <h3>Browser Compatibility</h3>
+                                <p>TinyPixels works best with:
+                                    <ul>
+                                        <li>Chrome 88+</li>
+                                        <li>Firefox 86+</li>
+                                        <li>Safari 14+</li>
+                                        <li>Edge 88+</li>
+                                    </ul>
+                                </p>
+                            </div>
+                            <div class="faq-item">
+                                <h3>Common Issues</h3>
+                                <p>Troubleshooting tips:
+                                    <ul>
+                                        <li>Clear browser cache</li>
+                                        <li>Update your browser</li>
+                                        <li>Check file permissions</li>
+                                        <li>Enable JavaScript</li>
+                                    </ul>
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="faq-category">
+                        <h2><i class="fas fa-mobile-alt"></i> Mobile & Tablets</h2>
+                        <div class="faq-item">
+                            <h3>Can I use TinyPixels on mobile devices?</h3>
+                            <p>Yes, TinyPixels is fully optimized for mobile use:
+                                <ul>
+                                    <li>Responsive touch-friendly interface</li>
+                                    <li>Works with mobile browsers</li>
+                                    <li>Access camera roll directly</li>
+                                    <li>Optimized for low bandwidth</li>
+                                </ul>
+                            </p>
+                        </div>
+                        <div class="faq-item">
+                            <h3>How can I optimize images for mobile viewing?</h3>
+                            <p>For best mobile performance:
+                                <ul>
+                                    <li>Use WebP format when possible</li>
+                                    <li>Set width to common mobile breakpoints (360px, 414px, etc.)</li>
+                                    <li>Enable responsive image sizing</li>
+                                    <li>Keep file sizes under 200KB for fast loading</li>
+                                </ul>
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="faq-category">
+                        <h2><i class="fas fa-code"></i> Developer Integration</h2>
+                        <div class="faq-item">
+                            <h3>Is there an API available?</h3>
+                            <p>Developer integration options include:
+                                <ul>
+                                    <li>REST API for remote processing</li>
+                                    <li>NPM package for Node.js projects</li>
+                                    <li>Command-line interface (CLI)</li>
+                                    <li>WebAssembly module for browser integration</li>
+                                </ul>
+                            </p>
+                        </div>
+                        <div class="faq-item">
+                            <h3>How can I automate image optimization?</h3>
+                            <p>Automation options available:
+                                <ul>
+                                    <li>Git hooks for automatic optimization</li>
+                                    <li>Build process integration</li>
+                                    <li>Webpack/Gulp plugins</li>
+                                    <li>Folder watch functionality</li>
+                                </ul>
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="faq-category">
+                        <h2><i class="fas fa-paint-brush"></i> Advanced Features</h2>
+                        <div class="faq-item">
+                            <h3>What advanced editing features are available?</h3>
+                            <p>Premium features include:
+                                <ul>
+                                    <li>Batch watermarking</li>
+                                    <li>Custom compression profiles</li>
+                                    <li>Metadata preservation options</li>
+                                    <li>Color space conversion</li>
+                                </ul>
+                            </p>
+                        </div>
+                        <div class="faq-item">
+                            <h3>Can I automate recurring tasks?</h3>
+                            <p>Yes, through automation features:
+                                <ul>
+                                    <li>Save custom presets</li>
+                                    <li>Batch processing templates</li>
+                                    <li>Scheduled optimization</li>
+                                    <li>Integration with cloud storage</li>
+                                </ul>
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="faq-category">
+                        <h2><i class="fas fa-chart-line"></i> Performance & SEO</h2>
+                        <div class="faq-item">
+                            <h3>How does image optimization affect SEO?</h3>
+                            <p>Image optimization improves SEO through:
+                                <ul>
+                                    <li>Faster page load times</li>
+                                    <li>Better Core Web Vitals scores</li>
+                                    <li>Improved mobile performance metrics</li>
+                                    <li>Enhanced user experience signals</li>
+                                </ul>
+                            </p>
+                        </div>
+                        <div class="faq-item">
+                            <h3>What are the best practices for image SEO?</h3>
+                            <p>Recommended SEO practices:
+                                <ul>
+                                    <li>Use descriptive file names</li>
+                                    <li>Include proper alt text</li>
+                                    <li>Implement responsive images</li>
+                                    <li>Use next-gen formats like WebP</li>
+                                </ul>
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="faq-category">
+                        <h2><i class="fas fa-server"></i> Enterprise Usage</h2>
+                        <div class="faq-item">
+                            <h3>Are there enterprise solutions available?</h3>
+                            <p>Enterprise features include:
+                                <ul>
+                                    <li>Custom deployment options</li>
+                                    <li>Service Level Agreements (SLA)</li>
+                                    <li>Dedicated support team</li>
+                                    <li>Custom integration development</li>
+                                </ul>
+                            </p>
+                        </div>
+                        <div class="faq-item">
+                            <h3>What about bulk processing?</h3>
+                            <p>Enterprise bulk processing offers:
+                                <ul>
+                                    <li>Unlimited batch processing</li>
+                                    <li>High-priority queue access</li>
+                                    <li>Custom output profiles</li>
+                                    <li>Advanced reporting features</li>
+                                </ul>
+                            </p>
+                        </div>
                     </div>
                 </div>
-
-                <div class="faq-item">
-                    <button class="faq-question">
-                        Is there a file size limit?
-                        <i class="fas fa-chevron-down"></i>
-                    </button>
-                    <div class="faq-answer">
-                        <p>TinyPixels can handle images up to 50MB in size. For larger files, we recommend splitting them into smaller parts.</p>
-                    </div>
-                </div>
-
-                <!-- Add more FAQ items as needed -->
             </div>
-        </div>
+        </section>
     </main>
 
     <footer class="footer">
-        <!-- ...existing footer content... -->
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h3>TinyPixels</h3>
+                    <p>Free online image optimization tool built with privacy in mind.</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 TinyPixels. All rights reserved.</p>
+            </div>
+        </div>
     </footer>
 
     <script src="main.js"></script>
