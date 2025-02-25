@@ -5,60 +5,82 @@ class ImageProcessor {
     }
 
     async processImage(file, settings) {
+        const image = await this.loadImage(file);
+        const canvas = document.createElement('canvas');
+        const ctx = canvas.getContext('2d');
+        
+        // Set dimensions
+        canvas.width = settings.width || image.width;
+        canvas.height = settings.height || image.height;
+        
+        // Draw image
+        ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
+        
+        // Handle different formats
+        const format = settings.format || 'image/jpeg';
+        const quality = settings.quality / 100;
+        
+        // Special handling for different formats
+        switch(format) {
+            case 'image/avif':
+                return await this.convertToAVIF(canvas, quality);
+            case 'image/heic':
+                return await this.convertToHEIC(canvas, quality);
+            case 'image/gif':
+                return await this.convertToGIF(canvas);
+            case 'image/tiff':
+                return await this.convertToTIFF(canvas, quality);
+            case 'image/bmp':
+                return await this.convertToBMP(canvas);
+            default:
+                return await new Promise(resolve => {
+                    canvas.toBlob(blob => resolve(blob), format, quality);
+                });
+        }
+    }
+
+    async loadImage(file) {
         return new Promise((resolve, reject) => {
             const img = new Image();
-            
-            img.onload = () => {
-                try {
-                    let width = img.width;
-                    let height = img.height;
-
-                    // Handle resizing
-                    if (settings.width && settings.height) {
-                        width = settings.width;
-                        height = settings.height;
-                    } else if (settings.width) {
-                        height = (height * settings.width) / width;
-                        width = settings.width;
-                    } else if (settings.height) {
-                        width = (width * settings.height) / height;
-                        height = settings.height;
-                    }
-
-                    this.canvas.width = width;
-                    this.canvas.height = height;
-
-                    // Draw and compress
-                    this.ctx.drawImage(img, 0, 0, width, height);
-
-                    const quality = settings.quality / 100;
-
-                    if (settings.targetSize) {
-                        // Binary search for the right quality to match target size
-                        this._findOptimalQuality(settings.targetSize, settings.format)
-                            .then(resolve)
-                            .catch(reject);
-                    } else {
-                        // Use straight quality setting
-                        this.canvas.toBlob(
-                            (blob) => {
-                                if (blob) {
-                                    resolve(blob);
-                                } else {
-                                    reject(new Error('Failed to process image'));
-                                }
-                            },
-                            settings.format,
-                            settings.format === 'image/png' ? undefined : quality
-                        );
-                    }
-                } catch (error) {
-                    reject(error);
-                }
-            };
-
+            img.onload = () => resolve(img);
             img.onerror = () => reject(new Error('Failed to load image'));
             img.src = URL.createObjectURL(file);
+        });
+    }
+
+    // Format conversion methods
+    async convertToAVIF(canvas, quality) {
+        // AVIF conversion logic
+        return new Promise(resolve => {
+            canvas.toBlob(blob => resolve(blob), 'image/avif', quality);
+        });
+    }
+
+    async convertToHEIC(canvas, quality) {
+        // HEIC conversion logic
+        return new Promise(resolve => {
+            canvas.toBlob(blob => resolve(blob), 'image/heic', quality);
+        });
+    }
+
+    async convertToGIF(canvas) {
+        // GIF conversion logic
+        return new Promise(resolve => {
+            canvas.toBlob(blob => resolve(blob), 'image/gif');
+        });
+    }
+
+    async convertToTIFF(canvas, quality) {
+        // TIFF conversion logic
+        return new Promise(resolve => {
+            canvas.toBlob(blob => resolve(blob), 'image/tiff', quality);
+        });
+    }
+
+    async convertToBMP(canvas) {
+        // BMP conversion logic
+        return new Promise(resolve => {
+            canvas.toBlob(blob => resolve(blob), 'image/bmp');
         });
     }
 
