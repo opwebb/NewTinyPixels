@@ -1,3 +1,40 @@
+# Check and enable required Apache modules
+<IfModule !mod_rewrite.c>
+    LoadModule rewrite_module modules/mod_rewrite.so
+</IfModule>
+
+<IfModule !mod_headers.c>
+    LoadModule headers_module modules/mod_headers.so
+</IfModule>
+
+<IfModule !mod_expires.c>
+    LoadModule expires_module modules/mod_expires.so
+</IfModule>
+
+<IfModule !mod_deflate.c>
+    LoadModule deflate_module modules/mod_deflate.so
+</IfModule>
+
+<IfModule !mod_filter.c>
+    LoadModule filter_module modules/mod_filter.so
+</IfModule>
+
+<IfModule !mod_ssl.c>
+    LoadModule ssl_module modules/mod_ssl.so
+</IfModule>
+
+<IfModule !mod_security2.c>
+    LoadModule security2_module modules/mod_security2.so
+</IfModule>
+
+# Enable mod_rewrite
+RewriteEngine On
+
+# Enable other required modules
+<IfModule mod_rewrite.c>
+    Options +FollowSymLinks
+</IfModule>
+
 # Enable GZIP compression
 <IfModule mod_deflate.c>
     AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css text/javascript application/javascript application/x-javascript application/json
@@ -29,6 +66,34 @@
     Header set Feature-Policy "microphone 'none'; geolocation 'none'; camera 'none'"
 </IfModule>
 
+# Enhanced Content Security Policy
+<IfModule mod_headers.c>
+    Header set Content-Security-Policy "default-src 'self'; \
+        script-src 'self' https://cdnjs.cloudflare.com https://www.googletagmanager.com https://www.google-analytics.com 'unsafe-inline' 'unsafe-eval'; \
+        style-src 'self' https://cdnjs.cloudflare.com 'unsafe-inline'; \
+        img-src 'self' data: https: blob:; \
+        font-src 'self' https://cdnjs.cloudflare.com data:; \
+        connect-src 'self' https://www.google-analytics.com; \
+        frame-src 'none'; \
+        media-src 'none'; \
+        object-src 'none'; \
+        manifest-src 'self'; \
+        worker-src 'self' blob:; \
+        form-action 'self'; \
+        base-uri 'self'; \
+        frame-ancestors 'none';"
+</IfModule>
+
+# Advanced DDoS Protection
+<IfModule mod_evasive20.c>
+    DOSHashTableSize 3097
+    DOSPageCount 2
+    DOSSiteCount 50
+    DOSPageInterval 1
+    DOSSiteInterval 1
+    DOSBlockingPeriod 10
+</IfModule>
+
 # Rate Limiting (requires mod_ratelimit)
 <IfModule mod_ratelimit.c>
     SetOutputFilter RATE_LIMIT
@@ -43,6 +108,70 @@ Options -Indexes
     Order allow,deny
     Deny from all
 </FilesMatch>
+
+# Prevent PHP Execution in Uploads
+<FilesMatch ".+\.ph(p[3457]?|t|tml)$">
+    SetHandler default-handler
+    Deny from all
+</FilesMatch>
+
+# Block SQL Injection Attempts
+RewriteCond %{QUERY_STRING} union.*select.*\( [NC,OR]
+RewriteCond %{QUERY_STRING} concat.*\( [NC]
+RewriteRule ^(.*)$ - [F]
+
+# Block Common Exploits
+RewriteCond %{REQUEST_METHOD} ^(HEAD|TRACE|DELETE|TRACK|DEBUG) [NC]
+RewriteRule ^(.*)$ - [F]
+
+# Restrict File Upload Types
+<FilesMatch "(?i)\.(php|php3|php4|php5|phtml|exe|pl|py|jsp|asp|htm|html|shtml|sh|cgi|dll)$">
+    Order Deny,Allow
+    Deny from all
+</FilesMatch>
+
+# Additional Security Headers
+<IfModule mod_headers.c>
+    Header set X-Permitted-Cross-Domain-Policies "none"
+    Header set X-Download-Options "noopen"
+    Header set Cross-Origin-Embedder-Policy "require-corp"
+    Header set Cross-Origin-Opener-Policy "same-origin"
+    Header set Cross-Origin-Resource-Policy "same-origin"
+    Header set Permissions-Policy "accelerometer=(), camera=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), usb=(), interest-cohort=()"
+</IfModule>
+
+# Protect Against XSS, Clickjacking and Other Vulnerabilities
+<IfModule mod_headers.c>
+    Header set X-XSS-Protection "1; mode=block"
+    Header always append X-Frame-Options SAMEORIGIN
+    Header set X-Content-Type-Options "nosniff"
+    Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+</IfModule>
+
+# Block Bad Bots and Scrapers
+RewriteCond %{HTTP_USER_AGENT} ^$ [OR]
+RewriteCond %{HTTP_USER_AGENT} ^(java|curl|wget).* [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} ^.*(libwww-perl|wget|python|nikto|curl|scan|java|winhttp|clshttp|loader).* [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} ^.*(HTTrack|clshttp|archiver|loader|email|harvest|extract|grab|miner).* [NC]
+RewriteRule ^(.*)$ - [F,L]
+
+# Prevent Access to Hidden Files
+<FilesMatch "^\.">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# Block Access to Backup and Source Files
+<FilesMatch "(\.(bak|config|sql|fla|psd|ini|log|sh|inc|swp|dist)|~)$">
+    Order allow,deny
+    Deny from all
+    Satisfy All
+</FilesMatch>
+
+# Disable HTTP TRACE/TRACK Methods
+RewriteCond %{REQUEST_METHOD} ^TRACE
+RewriteCond %{REQUEST_METHOD} ^TRACK
+RewriteRule .* - [F]
 
 # Prevent Script Execution
 <Directory "/uploads">
