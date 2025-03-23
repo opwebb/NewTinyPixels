@@ -63,15 +63,29 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
+        if (imageFiles.length > 50) {
+            showToast('Maximum 50 images allowed at once', 'warning');
+            imageFiles.length = 50; // Limit to first 50 files
+        }
+
         currentFiles = imageFiles;
         processedBlobs = [];
         settings.classList.remove('hidden');
+        preview.className = 'preview-grid' + (imageFiles.length > 9 ? ' many-files' : '');
         displayPreviews(imageFiles);
         downloadBtn.disabled = true;
     }
 
     function displayPreviews(files) {
         preview.innerHTML = '';
+
+        // Show file count if more than 4 files
+        if (files.length > 4) {
+            const countInfo = document.createElement('div');
+            countInfo.className = 'preview-count';
+            countInfo.textContent = `${files.length} images selected`;
+            preview.appendChild(countInfo);
+        }
 
         files.forEach((file, index) => {
             const card = document.createElement('div');
@@ -128,6 +142,9 @@ document.addEventListener('DOMContentLoaded', () => {
             card.appendChild(info);
             preview.appendChild(card);
         });
+
+        // Scroll to previews
+        preview.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     }
 
     // Handle compression

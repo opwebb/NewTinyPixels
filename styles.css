@@ -464,6 +464,94 @@ body {
     }
 }
 
+/* How to Use Section */
+.how-to-use {
+    padding: 3rem 0;  /* reduced padding */
+    background: var(--feature-bg);
+}
+
+.section-title {
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 3rem;
+}
+
+.steps-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;  /* reduced gap */
+    max-width: 1000px;  /* reduced max-width */
+    margin: 0 auto;
+}
+
+.step-card {
+    background: var(--card-bg);
+    padding: 1.5rem;  /* reduced padding */
+    border-radius: var(--radius);
+    text-align: center;
+    position: relative;
+    transition: transform var(--transition-bounce);
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border);
+}
+
+.step-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--primary);
+}
+
+.step-number {
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--primary-gradient);
+    color: white;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    box-shadow: 0 4px 10px rgba(0, 122, 255, 0.3);
+}
+
+.step-icon {
+    font-size: 2rem;  /* reduced icon size */
+    color: var(--primary);
+    margin: 1rem 0;  /* reduced margin */
+}
+
+.step-card h3 {
+    font-size: 1.1rem;  /* reduced font size */
+    margin-bottom: 0.75rem;
+    color: var(--text);
+}
+
+.step-card p {
+    color: var(--text-muted);
+    font-size: 0.9rem;  /* reduced font size */
+    line-height: 1.4;
+}
+
+@media (max-width: 992px) {
+    .steps-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 576px) {
+    .steps-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .section-title {
+        font-size: 2rem;
+    }
+}
+
 /* Settings Panel */
 .settings {
     margin-top: 2rem;
@@ -625,9 +713,57 @@ body {
 /* Preview Grid */
 .preview-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 1rem;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.5rem;
     margin-top: 2rem;
+    max-width: 1200px;
+    margin: 2rem auto;
+}
+
+.preview-card {
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    overflow: hidden;
+    transition: transform var(--transition-bounce);
+}
+
+.preview-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-bottom: 1px solid var(--border);
+}
+
+.preview-info {
+    padding: 1rem;
+    flex: 1;
+    overflow-y: auto;
+}
+
+/* Add max-height for images grid when many files are selected */
+.preview-grid.many-files {
+    max-height: 800px;
+    overflow-y: auto;
+    padding-right: 1rem;
+    scrollbar-width: thin;
+    scrollbar-color: var(--primary) var(--border);
+}
+
+.preview-grid.many-files::-webkit-scrollbar {
+    width: 8px;
+}
+
+.preview-grid.many-files::-webkit-scrollbar-track {
+    background: var(--border);
+    border-radius: 4px;
+}
+
+.preview-grid.many-files::-webkit-scrollbar-thumb {
+    background: var(--primary);
+    border-radius: 4px;
 }
 
 @media (max-width: 768px) {
@@ -707,15 +843,14 @@ body {
 /* Features Section */
 .features {
     background: var(--feature-bg);
-    padding: 4rem 0;
-    margin-top: 4rem;
+    padding: 3rem 0;  /* match how-to-use padding */
 }
 
 .features h2 {
     text-align: center;
+    font-size: 2.5rem;  /* match section-title */
+    font-weight: 800;
     margin-bottom: 3rem;
-    font-size: 2rem;
-    font-weight: 700;
 }
 
 .features-grid {
@@ -728,16 +863,12 @@ body {
 
 .feature-card {
     background: var(--card-bg);
-    padding: 1.5rem;
+    padding: 1.5rem;  /* match step-card padding */
     border-radius: var(--radius);
     text-align: center;
-    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    position: relative;
-    overflow: hidden;
+    transition: transform var(--transition-bounce);
+    box-shadow: var(--shadow);
     border: 1px solid var(--border);
-    will-change: transform;
-    backface-visibility: hidden;
-    transform: var(--gpu);
 }
 
 .feature-card:hover {
@@ -768,9 +899,9 @@ body {
 }
 
 .feature-icon {
-    font-size: 1.5rem;
+    font-size: 2rem;  /* match step-icon */
     color: var(--primary);
-    transition: all 0.4s ease;
+    margin: 1rem 0;  /* match step-icon margin */
 }
 
 .feature-card:hover .feature-icon {
@@ -779,6 +910,7 @@ body {
 }
 
 .feature-card h3 {
+    font-size: 1.1rem;  /* match step-card h3 */
     margin: 0.5rem 0;
     font-size: 1.25rem;
     font-weight: 600;
@@ -791,6 +923,7 @@ body {
 
 .feature-card p {
     color: var(--text-muted);
+    font-size: 0.9rem;  /* match step-card p */
     line-height: 1.4;
     margin-top: 0.5rem;
     font-size: 0.9rem;
@@ -1343,7 +1476,7 @@ body {
     align-items: center;
     gap: 1rem;
     margin-bottom: 2rem;
-    color: var(--primary);
+    color: var (--primary);
     font-size: 1.5rem;
 }
 
