@@ -6,57 +6,193 @@
     <title>Privacy Policy - TinyPixels</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="privacy-styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
      <!-- Google AdSense -->
      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6081264125718584" crossorigin="anonymous"></script>
+
+
+      <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon.svg">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon.svg">
+    <link rel="manifest" href="/site.webmanifest">
 </head>
 <body class="privacy-page">
+    <header class="header">
+        <div class="container">
+            <nav class="nav">
+                <div class="nav-left">
+                    <a href="/" class="logo">
+                        <svg class="logo-icon" viewBox="0 0 100 100" width="36" height="36">
+                            <defs>
+                                <linearGradient id="g">
+                                    <stop offset="0%" stop-color="#007AFF"/>
+                                    <stop offset="100%" stop-color="#0051a8"/>
+                                </linearGradient>
+                            </defs>
+                            <!-- Main Grid -->
+                            <rect x="10" y="10" width="35" height="35" fill="url(#g)" rx="4"/>
+                            <rect x="55" y="10" width="35" height="35" fill="url(#g)" opacity="0.9" rx="4"/>
+                            <rect x="10" y="55" width="35" height="35" fill="url(#g)" opacity="0.9" rx="4"/>
+                            <rect x="55" y="55" width="35" height="35" fill="url(#g)" opacity="0.8" rx="4"/>
+                            <!-- Center -->
+                            <circle cx="50" cy="50" r="15" fill="white" opacity="0.15"/>
+                            <circle cx="50" cy="50" r="10" fill="white"/>
+                        </svg><span class="bold-text">Tiny</span><span class="pixel-text">Pixels</span>
+                    </a>
+                </div>
+                <div class="nav-right">
+                    <button id="themeToggle" class="theme-toggle">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                    <button class="mobile-menu-btn" id="mobileMenuBtn">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <div class="nav-links" id="navLinks">
+                        <a href="/about.html" class="nav-link">About</a>
+                        <a href="/contact.html" class="nav-link">Contact</a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
     <main class="privacy-main">
         <div class="container">
-            <a href="/" class="back-home">&larr; Back to Home</a>
-            
-            <div class="privacy-content">
-                <h1>Privacy Policy</h1>
-                <p class="last-updated">Last updated: January 2024</p>
+            <!-- Removed back-home-btn -->
+            <section class="hero">
+                <h1 class="hero-title">Privacy <span class="gradient-text">Policy</span></h1>
+                <p class="hero-description">Your privacy is our top priority</p>
+            </section>
 
-                <div class="policy-text">
-                    <h2>1. Overview</h2>
-                    <p>TinyPixels is committed to protecting your privacy. Our service processes all images locally in your browser - your files never leave your device.</p>
+            <section class="privacy-content">
+                <div class="policy-card">
+                    <div class="policy-section introduction">
+                        <h2><i class="fas fa-info-circle"></i> Introduction</h2>
+                        <p>At TinyPixels, we take your privacy seriously. This policy explains how we handle your data:</p>
+                        <ul>
+                            <li>All processing happens in your browser</li>
+                            <li>No data is sent to our servers</li>
+                            <li>No personal information is collected</li>
+                            <li>Transparent and open-source operation</li>
+                        </ul>
+                    </div>
 
-                    <h2>2. Data Collection</h2>
-                    <p>We collect minimal anonymous usage data to improve our service. We do not store or process your images on our servers.</p>
+                    <div class="policy-section">
+                        <h2><i class="fas fa-shield-alt"></i> Data Protection</h2>
+                        <p>Your images are protected through:</p>
+                        <ul>
+                            <li>Local browser-based processing only</li>
+                            <li>No server uploads or storage</li>
+                            <li>End-to-end privacy protection</li>
+                            <li>Secure, encrypted connections (HTTPS)</li>
+                        </ul>
+                    </div>
 
-                    <h2>3. Browser Storage</h2>
-                    <p>We use local storage only to remember your preferences and settings.</p>
+                    <div class="policy-section">
+                        <h2><i class="fas fa-cookie"></i> Cookie Policy</h2>
+                        <p>We use minimal cookies for:</p>
+                        <ul>
+                            <li>Theme preferences</li>
+                            <li>Basic site functionality</li>
+                            <li>Performance optimization</li>
+                            <li>No tracking or marketing cookies</li>
+                        </ul>
+                    </div>
 
-                    <h2>4. Cookies</h2>
-                    <p>We use essential cookies for basic site functionality. No third-party tracking cookies are used.</p>
+                    <div class="policy-section">
+                        <h2><i class="fas fa-chart-bar"></i> Analytics</h2>
+                        <p>Limited anonymous analytics include:</p>
+                        <ul>
+                            <li>Aggregated usage statistics</li>
+                            <li>No personal identifiers</li>
+                            <li>Performance monitoring</li>
+                            <li>Service improvement metrics</li>
+                        </ul>
+                    </div>
 
-                    <h2>5. Analytics</h2>
-                    <p>We use basic analytics to understand usage patterns. All data is anonymized and aggregated.</p>
+                    <div class="policy-section">
+                        <h2><i class="fas fa-user-shield"></i> Your Rights</h2>
+                        <p>You have the right to:</p>
+                        <ul>
+                            <li>Access your data (if any)</li>
+                            <li>Delete your data</li>
+                            <li>Opt out of analytics</li>
+                            <li>Contact us with concerns</li>
+                        </ul>
+                    </div>
 
-                    <h2>6. Your Rights</h2>
-                    <p>You have the right to:</p>
-                    <ul>
-                        <li>Access your data</li>
-                        <li>Delete your data</li>
-                        <li>Opt out of analytics</li>
-                    </ul>
+                    <div class="policy-section">
+                        <h2><i class="fas fa-envelope"></i> Contact Us</h2>
+                        <p>For privacy-related questions:</p>
+                        <ul>
+                            <li>Email: privacy@tinypixels.app</li>
+                            <li>Response within 48 hours</li>
+                            <li>Clear communication promise</li>
+                            <li>Dedicated privacy team</li>
+                        </ul>
+                    </div>
 
-                    <h2>7. Changes</h2>
-                    <p>We reserve the right to update this policy. Major changes will be notified on our website.</p>
-
-                    <h2>8. Contact</h2>
-                    <p>For privacy concerns, contact us at: privacy@tinypixels.app</p>
+                    <div class="policy-section updates">
+                        <p class="last-updated">Last updated: January 2024</p>
+                    </div>
                 </div>
-            </div>
+            </section>
         </div>
     </main>
     <footer class="footer">
         <div class="container">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <a href="/" class="logo">
+                        <svg class="logo-icon" viewBox="0 0 100 100" width="36" height="36">
+                            <defs>
+                                <linearGradient id="g2">
+                                    <stop offset="0%" stop-color="#007AFF"/>
+                                    <stop offset="100%" stop-color="#0051a8"/>
+                                </linearGradient>
+                            </defs>
+                            <!-- Main Grid -->
+                            <rect x="10" y="10" width="35" height="35" fill="url(#g2)" rx="4"/>
+                            <rect x="55" y="10" width="35" height="35" fill="url(#g2)" opacity="0.9" rx="4"/>
+                            <rect x="10" y="55" width="35" height="35" fill="url(#g2)" opacity="0.9" rx="4"/>
+                            <rect x="55" y="55" width="35" height="35" fill="url(#g2)" opacity="0.8" rx="4"/>
+                            <!-- Center -->
+                            <circle cx="50" cy="50" r="15" fill="white" opacity="0.15"/>
+                            <circle cx="50" cy="50" r="10" fill="white"/>
+                        </svg><span class="bold-text">Tiny</span><span class="pixel-text">Pixels</span>
+                    </a>
+                    <p>Free online tool to compress, resize, and convert your images.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Help</h3>
+                    <a href="/faq.html">FAQ</a>
+                    <a href="/support.html">Support</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Company</h3>
+                    <a href="/about.html">About Us</a>
+                    <a href="/contact.html">Contact Us</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Legal</h3>
+                    <a href="/privacy.html">Privacy Policy</a>
+                    <a href="/terms.html">Terms of Service</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Follow Us</h3>
+                    <div class="social-links">
+                        <a href="#" target="_blank" rel="noopener"><i class="fab fa-twitter"></i></a>
+                        <a href="#" target="_blank" rel="noopener"><i class="fab fa-github"></i></a>
+                        <a href="#" target="_blank" rel="noopener"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
             <div class="footer-bottom">
                 <p>&copy; 2024 TinyPixels. All rights reserved.</p>
             </div>
         </div>
     </footer>
+    <script src="main.js"></script>
 </body>
 </html>

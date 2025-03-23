@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+    <defs>
+        <linearGradient id="g">
+            <stop offset="0%" stop-color="#007AFF"/>
+            <stop offset="100%" stop-color="#0051a8"/>
+        </linearGradient>
+        <filter id="shadow">
+            <feDropShadow dx="0" dy="1" stdDeviation="1" flood-color="#000" flood-opacity="0.2"/>
+        </filter>
+    </defs>
+    
+    <!-- Main Grid Pattern -->
+    <rect x="10" y="10" width="35" height="35" fill="url(#g)" rx="4" filter="url(#shadow)"/>
+    <rect x="55" y="10" width="35" height="35" fill="url(#g)" opacity="0.9" rx="4" filter="url(#shadow)"/>
+    <rect x="10" y="55" width="35" height="35" fill="url(#g)" opacity="0.9" rx="4" filter="url(#shadow)"/>
+    <rect x="55" y="55" width="35" height="35" fill="url(#g)" opacity="0.8" rx="4" filter="url(#shadow)"/>
+    
+    <!-- Center Circle -->
+    <circle cx="50" cy="50" r="15" fill="white" opacity="0.15"/>
+    <circle cx="50" cy="50" r="10" fill="white"/>
+</svg>

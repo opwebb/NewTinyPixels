@@ -76,10 +76,20 @@ document.addEventListener('DOMContentLoaded', () => {
         files.forEach((file, index) => {
             const card = document.createElement('div');
             card.className = 'preview-card fadeIn';
+            card.setAttribute('data-index', index);
 
             const img = document.createElement('img');
             img.className = 'preview-image';
             img.src = URL.createObjectURL(file);
+
+            // Load image to get dimensions
+            const tempImage = new Image();
+            tempImage.onload = () => {
+                const info = card.querySelector('.preview-info');
+                const dimensions = info.querySelector('.image-dimensions');
+                dimensions.textContent = `Dimensions: ${tempImage.width} × ${tempImage.height}px`;
+            };
+            tempImage.src = img.src;
 
             const info = document.createElement('div');
             info.className = 'preview-info';
@@ -88,12 +98,32 @@ document.addEventListener('DOMContentLoaded', () => {
             name.className = 'preview-name';
             name.textContent = file.name;
 
+            const details = document.createElement('div');
+            details.className = 'image-details';
+            
             const size = document.createElement('div');
-            size.className = 'preview-size';
-            size.textContent = `Original: ${imageProcessor.formatBytes(file.size)}`;
+            size.className = 'image-size';
+            size.textContent = `Size: ${imageProcessor.formatBytes(file.size)}`;
 
+            const dimensions = document.createElement('div');
+            dimensions.className = 'image-dimensions';
+            dimensions.textContent = 'Dimensions: Loading...';
+
+            const type = document.createElement('div');
+            type.className = 'image-type';
+            type.textContent = `Type: ${file.type.split('/')[1].toUpperCase()}`;
+
+            const lastModified = document.createElement('div');
+            lastModified.className = 'image-modified';
+            lastModified.textContent = `Modified: ${new Date(file.lastModified).toLocaleDateString()}`;
+
+            details.appendChild(size);
+            details.appendChild(dimensions);
+            details.appendChild(type);
+            details.appendChild(lastModified);
+            
             info.appendChild(name);
-            info.appendChild(size);
+            info.appendChild(details);
             card.appendChild(img);
             card.appendChild(info);
             preview.appendChild(card);
@@ -102,88 +132,110 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Handle compression
     compressBtn.addEventListener('click', async () => {
-        if (currentFiles.length === 0) return;
+        if (currentFiles.length === 0) {
+            showToast('Please select at least one image', 'error');
+            return;
+        }
 
         const settings = {
-            quality: parseInt(qualitySlider.value),
-            format: formatSelect.value,
+            quality: parseInt(qualitySlider.value) || 80,
+            format: formatSelect.value || 'image/jpeg',
             width: widthInput.value ? parseInt(widthInput.value) : undefined,
             height: heightInput.value ? parseInt(heightInput.value) : undefined,
             targetSize: targetSizeInput.value ? parseInt(targetSizeInput.value) : undefined
         };
 
         compressBtn.disabled = true;
-        compressBtn.textContent = 'Processing...';
-
+        compressBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
+        
         try {
-            processedBlobs = await Promise.all(
-                currentFiles.map(file => imageProcessor.processImage(file, settings))
-            );
+            processedBlobs = [];
+            let failedCount = 0;
 
-            // Update preview with processed images
-            processedBlobs.forEach((blob, index) => {
-                const card = preview.children[index];
-                const info = card.querySelector('.preview-info');
-
-                // Clear previous results if any
-                const existingResults = info.querySelectorAll('.processed-info');
-                existingResults.forEach(el => el.remove());
-
-                const processedSize = document.createElement('div');
-                processedSize.className = 'preview-size processed-info';
-                processedSize.textContent = `Processed: ${imageProcessor.formatBytes(blob.size)}`;
-
-                const savings = document.createElement('div');
-                savings.className = 'preview-size processed-info';
-                const savingsPercent = ((1 - (blob.size / currentFiles[index].size)) * 100).toFixed(1);
-                savings.textContent = `Saved: ${savingsPercent}%`;
-                savings.style.color = 'var(--primary)';
-
-                info.appendChild(processedSize);
-                info.appendChild(savings);
-            });
-
-            downloadBtn.disabled = false;
-            showToast('Images processed successfully', 'success');
-
-            // Track successful processing
-            if (typeof gtag !== 'undefined') {
-                gtag('event', 'image_processed', {
-                    'event_category': 'Image Processing',
-                    'event_label': 'Success',
-                    'value': processedBlobs.length
-                });
+            for (let i = 0; i < currentFiles.length; i++) {
+                const file = currentFiles[i];
+                try {
+                    console.log(`Processing file ${i + 1}/${currentFiles.length}:`, file.name);
+                    
+                    const blob = await imageProcessor.processImage(file, settings);
+                    processedBlobs.push(blob);
+                    
+                    // Remove individual success messages
+                    // Only show progress updates
+                    if (currentFiles.length > 1) {
+                        showToast(`Processing: ${i + 1}/${currentFiles.length}`, 'info');
+                    }
+                } catch (fileError) {
+                    console.error(`Failed to process ${file.name}:`, fileError);
+                    failedCount++;
+                    showToast(`Error processing ${file.name}: ${fileError.message}`, 'error');
+                }
             }
+
+            // Only show one final success message
+            if (processedBlobs.length > 0) {
+                await updatePreviewWithProcessed(processedBlobs);
+                if (failedCount > 0) {
+                    showToast(`Processed ${processedBlobs.length} images, ${failedCount} failed`, 'warning');
+                } else {
+                    showToast(`Successfully processed ${processedBlobs.length} image${processedBlobs.length > 1 ? 's' : ''}`, 'success');
+                }
+            } else {
+                throw new Error('No images were successfully processed');
+            }
+
         } catch (error) {
-            showToast('Error processing images: ' + error.message, 'error');
-
-            // Track failed processing
-            if (typeof gtag !== 'undefined') {
-                gtag('event', 'image_processed', {
-                    'event_category': 'Image Processing',
-                    'event_label': 'Failed',
-                });
-            }
+            console.error('Processing error:', error);
+            showToast(`Processing failed: ${error.message}`, 'error');
         } finally {
             compressBtn.disabled = false;
-            compressBtn.textContent = 'Process Images';
+            compressBtn.innerHTML = 'Process Images';
         }
     });
 
-    // Handle download
-    downloadBtn.addEventListener('click', () => {
+    // Update preview with processed images
+    async function updatePreviewWithProcessed(processedBlobs) {
         processedBlobs.forEach((blob, index) => {
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            const extension = formatSelect.value.split('/')[1];
-            a.download = `processed-${currentFiles[index].name.split('.')[0]}.${extension}`;
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-            URL.revokeObjectURL(url);
+            const card = preview.children[index];
+            const info = card.querySelector('.preview-info');
+
+            // Clear previous results if any
+            const existingResults = info.querySelectorAll('.processed-info, .download-btn');
+            existingResults.forEach(el => el.remove());
+
+            const processedSize = document.createElement('div');
+            processedSize.className = 'preview-size processed-info';
+            processedSize.textContent = `Processed: ${imageProcessor.formatBytes(blob.size)}`;
+
+            const savings = document.createElement('div');
+            savings.className = 'preview-size processed-info';
+            const savingsPercent = ((1 - (blob.size / currentFiles[index].size)) * 100).toFixed(1);
+            savings.textContent = `Saved: ${savingsPercent}%`;
+            savings.style.color = 'var(--primary)';
+
+            // Add download button for this specific image
+            const downloadBtn = document.createElement('button');
+            downloadBtn.className = 'button outline download-btn';
+            downloadBtn.innerHTML = '<i class="fas fa-download"></i> Download';
+            downloadBtn.onclick = () => downloadProcessedImage(blob, index);
+
+            info.appendChild(processedSize);
+            info.appendChild(savings);
+            info.appendChild(downloadBtn);
         });
-    });
+    }
+
+    function downloadProcessedImage(blob, index) {
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        const extension = formatSelect.value.split('/')[1];
+        a.download = `processed-${currentFiles[index].name.split('.')[0]}.${extension}`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+    }
 
     // Toast notification system
     function showToast(message, type = 'info') {

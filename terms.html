@@ -5,57 +5,181 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Terms of Service - TinyPixels</title>
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="terms-styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-     <!-- Google AdSense -->
-     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6081264125718584" crossorigin="anonymous"></script>
+
+     <!-- Favicon -->
+     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+     <link rel="apple-touch-icon" sizes="180x180" href="/favicon.svg">
+     <link rel="icon" type="image/png" sizes="32x32" href="/favicon.svg">
+     <link rel="icon" type="image/png" sizes="16x16" href="/favicon.svg">
+     <link rel="manifest" href="/site.webmanifest">
 </head>
-<body>
+<body class="terms-page">
+    <header class="header">
+        <div class="container">
+            <nav class="nav">
+                <div class="nav-left">
+                    <a href="/" class="logo">
+                        <svg class="logo-icon" viewBox="0 0 100 100" width="36" height="36">
+                            <defs>
+                                <linearGradient id="g">
+                                    <stop offset="0%" stop-color="#007AFF"/>
+                                    <stop offset="100%" stop-color="#0051a8"/>
+                                </linearGradient>
+                            </defs>
+                            <!-- Main Grid -->
+                            <rect x="10" y="10" width="35" height="35" fill="url(#g)" rx="4"/>
+                            <rect x="55" y="10" width="35" height="35" fill="url(#g)" opacity="0.9" rx="4"/>
+                            <rect x="10" y="55" width="35" height="35" fill="url(#g)" opacity="0.9" rx="4"/>
+                            <rect x="55" y="55" width="35" height="35" fill="url(#g)" opacity="0.8" rx="4"/>
+                            <!-- Center -->
+                            <circle cx="50" cy="50" r="15" fill="white" opacity="0.15"/>
+                            <circle cx="50" cy="50" r="10" fill="white"/>
+                        </svg><span class="bold-text">Tiny</span><span class="pixel-text">Pixels</span>
+                    </a>
+                </div>
+                <div class="nav-right">
+                    <button id="themeToggle" class="theme-toggle">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                    <button class="mobile-menu-btn" id="mobileMenuBtn">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <div class="nav-links" id="navLinks">
+                        <a href="/about.html" class="nav-link">About</a>
+                        <a href="/contact.html" class="nav-link">Contact</a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
     <main>
         <div class="container">
-            <a href="/" class="back-home-btn">
-                <i class="fas fa-arrow-left"></i>
-                Back to Home
-            </a>
-            <h1>Terms of Service</h1>
+            <section class="hero">
+                <h1 class="hero-title">Terms of <span class="gradient-text">Service</span></h1>
+                <p class="hero-description">Guidelines for using TinyPixels services</p>
+            </section>
 
-            <div class="terms-section">
-                <h2>1. Acceptance of Terms</h2>
-                <p>By accessing and using TinyPixels, you accept and agree to be bound by the terms and conditions outlined in this agreement.</p>
-            </div>
+            <section class="terms-content">
+                <div class="terms-card">
+                    <div class="terms-section introduction">
+                        <h2><i class="fas fa-gavel"></i> Agreement</h2>
+                        <p>By using TinyPixels, you agree to these terms. Please read them carefully.</p>
+                    </div>
 
-            <div class="terms-section">
-                <h2>2. Use License</h2>
-                <p>Permission is granted to temporarily download one copy of the materials (information or software) on TinyPixels for personal, non-commercial transitory viewing only.</p>
-            </div>
+                    <div class="terms-section">
+                        <h2><i class="fas fa-check-circle"></i> Acceptable Use</h2>
+                        <ul>
+                            <li>Use for lawful purposes only</li>
+                            <li>Respect intellectual property rights</li>
+                            <li>Don't overload or disrupt the service</li>
+                            <li>Don't attempt to circumvent limitations</li>
+                        </ul>
+                    </div>
 
-            <div class="terms-section">
-                <h2>3. User Responsibilities</h2>
-                <p>Users are responsible for maintaining the confidentiality of their account and password. Users agree to accept responsibility for all activities that occur under their account.</p>
-            </div>
+                    <div class="terms-section">
+                        <h2><i class="fas fa-user-shield"></i> User Responsibilities</h2>
+                        <ul>
+                            <li>Maintain your device security</li>
+                            <li>Keep shared links private</li>
+                            <li>Report bugs and vulnerabilities</li>
+                            <li>Don't share harmful content</li>
+                        </ul>
+                    </div>
 
-            <div class="terms-section">
-                <h2>4. Privacy Policy</h2>
-                <p>Your use of TinyPixels is also governed by our Privacy Policy. Please review our Privacy Policy, which also governs the site and informs users of our data collection practices.</p>
-            </div>
+                    <div class="terms-section">
+                        <h2><i class="fas fa-code"></i> Service Limitations</h2>
+                        <ul>
+                            <li>Maximum file size: 50MB per image</li>
+                            <li>Batch limit: 100 images</li>
+                            <li>Fair usage policies apply</li>
+                            <li>Service availability not guaranteed</li>
+                        </ul>
+                    </div>
 
-            <div class="terms-section">
-                <h2>5. Limitations</h2>
-                <p>TinyPixels shall not be held liable for any damages that result from the use or inability to use the materials on the website.</p>
-            </div>
+                    <div class="terms-section">
+                        <h2><i class="fas fa-exclamation-triangle"></i> Disclaimer</h2>
+                        <ul>
+                            <li>Service provided "as is"</li>
+                            <li>No warranty of any kind</li>
+                            <li>Not liable for data loss</li>
+                            <li>Right to modify service</li>
+                        </ul>
+                    </div>
 
-            <div class="footer">
-                <p>Last updated: 2024</p>
-                <p>© TinyPixels. All rights reserved.</p>
-            </div>
+                    <div class="terms-section">
+                        <h2><i class="fas fa-copyright"></i> Intellectual Property</h2>
+                        <ul>
+                            <li>Respect copyright laws</li>
+                            <li>Don't infringe trademarks</li>
+                            <li>Report IP violations</li>
+                            <li>Service marks protected</li>
+                        </ul>
+                    </div>
+
+                    <div class="terms-section updates">
+                        <p class="last-updated">Last updated: January 2024</p>
+                    </div>
+                </div>
+            </section>
         </div>
     </main>
+
     <footer class="footer">
         <div class="container">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <a href="/" class="logo">
+                        <svg class="logo-icon" viewBox="0 0 100 100" width="36" height="36">
+                            <defs>
+                                <linearGradient id="g2">
+                                    <stop offset="0%" stop-color="#007AFF"/>
+                                    <stop offset="100%" stop-color="#0051a8"/>
+                                </linearGradient>
+                            </defs>
+                            <!-- Main Grid -->
+                            <rect x="10" y="10" width="35" height="35" fill="url(#g2)" rx="4"/>
+                            <rect x="55" y="10" width="35" height="35" fill="url(#g2)" opacity="0.9" rx="4"/>
+                            <rect x="10" y="55" width="35" height="35" fill="url(#g2)" opacity="0.9" rx="4"/>
+                            <rect x="55" y="55" width="35" height="35" fill="url(#g2)" opacity="0.8" rx="4"/>
+                            <!-- Center -->
+                            <circle cx="50" cy="50" r="15" fill="white" opacity="0.15"/>
+                            <circle cx="50" cy="50" r="10" fill="white"/>
+                        </svg><span class="bold-text">Tiny</span><span class="pixel-text">Pixels</span>
+                    </a>
+                    <p>Free online tool to compress, resize, and convert your images.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Help</h3>
+                    <a href="/faq.html">FAQ</a>
+                    <a href="/support.html">Support</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Company</h3>
+                    <a href="/about.html">About Us</a>
+                    <a href="/contact.html">Contact Us</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Legal</h3>
+                    <a href="/privacy.html">Privacy Policy</a>
+                    <a href="/terms.html">Terms of Service</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Follow Us</h3>
+                    <div class="social-links">
+                        <a href="#" target="_blank" rel="noopener"><i class="fab fa-twitter"></i></a>
+                        <a href="#" target="_blank" rel="noopener"><i class="fab fa-github"></i></a>
+                        <a href="#" target="_blank" rel="noopener"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
             <div class="footer-bottom">
                 <p>&copy; 2024 TinyPixels. All rights reserved.</p>
             </div>
         </div>
     </footer>
+
+    <script src="main.js"></script>
 </body>
 </html>
