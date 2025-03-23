@@ -191,3 +191,54 @@ RewriteRule .* - [F]
 RewriteEngine On
 RewriteCond %{HTTPS} off
 RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# Enhanced Cache Control
+<IfModule mod_headers.c>
+    # Cache all files for 1 year
+    <FilesMatch "\.(ico|pdf|jpg|jpeg|png|webp|gif|js|css|swf|svg|woff|woff2|eot|ttf|otf)$">
+        Header set Cache-Control "max-age=31536000, public"
+    </FilesMatch>
+
+    # Cache HTML and XML files for 1 hour
+    <FilesMatch "\.(html|htm|xml)$">
+        Header set Cache-Control "max-age=3600, public, must-revalidate"
+    </FilesMatch>
+</IfModule>
+
+# Enhanced GZIP Compression
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css text/javascript text/calendar text/markdown text/x-component
+    AddOutputFilterByType DEFLATE application/javascript application/x-javascript application/json application/ld+json application/manifest+json application/xml
+    AddOutputFilterByType DEFLATE image/svg+xml image/x-icon
+    AddOutputFilterByType DEFLATE font/ttf font/eot font/otf font/opentype
+</IfModule>
+
+# Enable Browser Caching
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresByType image/jpg "access plus 1 year"
+    ExpiresByType image/jpeg "access plus 1 year"
+    ExpiresByType image/webp "access plus 1 year"
+    ExpiresByType image/gif "access plus 1 year"
+    ExpiresByType image/png "access plus 1 year"
+    ExpiresByType image/svg+xml "access plus 1 year"
+    ExpiresByType text/css "access plus 1 month"
+    ExpiresByType text/javascript "access plus 1 month"
+    ExpiresByType application/javascript "access plus 1 month"
+    ExpiresByType application/x-font-ttf "access plus 1 year"
+    ExpiresByType application/x-font-woff "access plus 1 year"
+    ExpiresByType font/woff2 "access plus 1 year"
+    ExpiresByType application/font-woff2 "access plus 1 year"
+</IfModule>
+
+# Set Keep-Alive Header
+<IfModule mod_headers.c>
+    Header set Connection keep-alive
+</IfModule>
+
+# Enable HTTP/2 Server Push
+<IfModule mod_http2.c>
+    H2Push on
+    H2PushResource add /styles.css
+    H2PushResource add /main.js
+</IfModule>

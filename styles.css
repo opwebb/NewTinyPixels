@@ -144,7 +144,9 @@ body {
 
 /* Mobile Menu Styles */
 .nav-links {
-    // ...existing code...
+    will-change: transform;
+    transform: translateZ(0);
+    backface-visibility: hidden;
 }
 
 @media (max-width: 768px) {
@@ -393,6 +395,7 @@ body {
     will-change: transform;
     backface-visibility: hidden;
     transform: var(--gpu);
+    contain: content;
 }
 
 .dropzone:hover {
@@ -3052,4 +3055,40 @@ body {
 .error-content p {
     color: var(--text-muted);
     margin-bottom: 2rem;
+}
+
+/* Base Styles */
+@font-face {
+    font-family: 'Arial';
+    font-display: swap;
+}
+
+/* Accessibility Improvements */
+:focus {
+    outline: 3px solid var(--primary);
+    outline-offset: 2px;
+}
+
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: var(--primary);
+    color: white;
+    padding: 8px;
+    z-index: 100;
+    transition: top 0.3s;
+}
+
+.skip-link:focus {
+    top: 0;
+}
+
+/* Contrast Improvements */
+.text-muted {
+    color: #666666;
+}
+
+[data-theme="dark"] .text-muted {
+    color: #a0a0a0;
 }
