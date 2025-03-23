@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - TinyPixels Image Optimization Tips & Updates</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Learn about image optimization, tips, tutorials and best practices for web images. Get the latest updates from TinyPixels." />
+    <meta name="keywords" content="image optimization blog, webp tutorial, image compression tips, web performance" />
+    <meta name="author" content="TinyPixels" />
+    
+    <!-- Open Graph / Social Media Tags -->
+    <meta property="og:title" content="TinyPixels Blog - Image Optimization Tips & Updates" />
+    <meta property="og:description" content="Learn about image optimization, tips, tutorials and best practices for web images." />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://tinypixels.app/og-blog.jpg" />
+
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6081264125718584" crossorigin="anonymous"></script>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon.svg">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon.svg">
+    <link rel="manifest" href="/site.webmanifest">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="blog-styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <nav class="nav">
+                <div class="nav-left">
+                    <a href="/" class="logo">
+                        <svg class="logo-icon" viewBox="0 0 100 100" width="36" height="36">
+                            <defs>
+                                <linearGradient id="g">
+                                    <stop offset="0%" stop-color="#007AFF"/>
+                                    <stop offset="100%" stop-color="#0051a8"/>
+                                </linearGradient>
+                            </defs>
+                            <!-- Main Grid -->
+                            <rect x="10" y="10" width="35" height="35" fill="url(#g)" rx="4"/>
+                            <rect x="55" y="10" width="35" height="35" fill="url(#g)" opacity="0.9" rx="4"/>
+                            <rect x="10" y="55" width="35" height="35" fill="url(#g)" opacity="0.9" rx="4"/>
+                            <rect x="55" y="55" width="35" height="35" fill="url(#g)" opacity="0.8" rx="4"/>
+                            <!-- Center -->
+                            <circle cx="50" cy="50" r="15" fill="white" opacity="0.15"/>
+                            <circle cx="50" cy="50" r="10" fill="white"/>
+                        </svg><span class="bold-text">Tiny</span><span class="pixel-text">Pixels</span>
+                    </a>
+                </div>
+                <div class="nav-right">
+                    <button id="themeToggle" class="theme-toggle">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                    <button class="mobile-menu-btn" id="mobileMenuBtn">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <div class="nav-links" id="navLinks">
+                        <a href="/blog.html" class="nav-link">Blog</a>
+                        <a href="/about.html" class="nav-link">About</a>
+                        <a href="/contact.html" class="nav-link">Contact</a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero blog-hero">
+            <div class="container">
+                <h1 class="hero-title">TinyPixels <span class="gradient-text">Blog</span></h1>
+                <p class="hero-description">Tips, tutorials, and updates about image optimization</p>
+            </div>
+        </section>
+
+        <section class="blog-section">
+            <div class="container">
+                <!-- Blog Categories -->
+                <div class="blog-categories">
+                    <a href="#" class="category-tag active">All</a>
+                    <a href="#" class="category-tag">Tutorials</a>
+                    <a href="#" class="category-tag">Tips & Tricks</a>
+                    <a href="#" class="category-tag">Updates</a>
+                    <a href="#" class="category-tag">Case Studies</a>
+                </div>
+
+                <!-- Search Bar -->
+                <div class="blog-search">
+                    <input type="search" placeholder="Search articles..." class="search-input">
+                    <button class="search-button"><i class="fas fa-search"></i></button>
+                </div>
+
+                <!-- Featured Post -->
+                <article class="featured-post">
+                    <div class="featured-image">
+                        <img src="/img/blog/featured-post.jpg" alt="Featured Post">
+                        <span class="featured-badge"><i class="fas fa-star"></i> Featured</span>
+                    </div>
+                    <div class="featured-content">
+                        <div class="blog-meta">
+                            <span class="blog-date"><i class="far fa-calendar"></i> Jan 20, 2024</span>
+                            <span class="blog-category"><i class="far fa-folder"></i> Featured</span>
+                            <span class="blog-read-time"><i class="far fa-clock"></i> 5 min read</span>
+                        </div>
+                        <h2>The Complete Guide to Next-Gen Image Formats</h2>
+                        <p>Everything you need to know about WebP, AVIF, and JPEG XL formats...</p>
+                        <a href="/blog/next-gen-formats" class="blog-read-more">Read Article <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+
+                <div class="blog-grid">
+                    <!-- Blog Post 1 -->
+                    <article class="blog-card">
+                        <div class="blog-image">
+                            <img src="/img/blog/webp-guide.jpg" alt="WebP Format Guide">
+                        </div>
+                        <div class="blog-content">
+                            <div class="blog-meta">
+                                <span class="blog-date"><i class="far fa-calendar"></i> Jan 15, 2024</span>
+                                <span class="blog-category"><i class="far fa-folder"></i> Tutorials</span>
+                            </div>
+                            <h2>Complete Guide to WebP Image Format</h2>
+                            <p>Learn why WebP is becoming the standard for web images and how to properly implement it in your projects.</p>
+                            <a href="/blog/webp-guide" class="blog-read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </article>
+
+                    <!-- Blog Post 2 -->
+                    <article class="blog-card">
+                        <div class="blog-image">
+                            <img src="/img/blog/optimization-tips.jpg" alt="Image Optimization Tips">
+                        </div>
+                        <div class="blog-content">
+                            <div class="blog-meta">
+                                <span class="blog-date"><i class="far fa-calendar"></i> Jan 10, 2024</span>
+                                <span class="blog-category"><i class="far fa-folder"></i> Best Practices</span>
+                            </div>
+                            <h2>10 Image Optimization Tips for Faster Websites</h2>
+                            <p>Discover the best practices for optimizing images to improve your website's loading speed.</p>
+                            <a href="/blog/optimization-tips" class="blog-read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </article>
+
+                    <!-- Additional Blog Posts... -->
+                    <article class="blog-card">
+                        <div class="blog-image">
+                            <img src="/img/blog/ecommerce.jpg" alt="E-commerce Image Guide">
+                        </div>
+                        <div class="blog-content">
+                            <div class="blog-meta">
+                                <span class="blog-date"><i class="far fa-calendar"></i> Jan 5, 2024</span>
+                                <span class="blog-category"><i class="far fa-folder"></i> E-commerce</span>
+                            </div>
+                            <h2>Image Optimization for E-commerce Success</h2>
+                            <p>Optimize your product images for better conversion rates and faster loading times.</p>
+                            <a href="/blog/ecommerce-images" class="blog-read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </article>
+
+                    <!-- Continue with 3 more blog posts... -->
+                </div>
+
+                <!-- Newsletter Signup -->
+                <div class="blog-newsletter">
+                    <h3>Subscribe to Our Newsletter</h3>
+                    <p>Get the latest image optimization tips and tutorials straight to your inbox</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Enter your email" required>
+                        <button type="submit" class="button primary">Subscribe</button>
+                    </form>
+                </div>
+
+                <!-- Blog Pagination -->
+                <div class="blog-pagination">
+                    <a href="#" class="active">1</a>
+                    <a href="#">2</a>
+                    <a href="#">3</a>
+                    <a href="#" class="next"><i class="fas fa-angle-right"></i></a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <a href="/" class="logo">
+                        <svg class="logo-icon" viewBox="0 0 100 100" width="36" height="36">
+                            <defs>
+                                <linearGradient id="g2">
+                                    <stop offset="0%" stop-color="#007AFF"/>
+                                    <stop offset="100%" stop-color="#0051a8"/>
+                                </linearGradient>
+                            </defs>
+                            <!-- Main Grid -->
+                            <rect x="10" y="10" width="35" height="35" fill="url(#g2)" rx="4"/>
+                            <rect x="55" y="10" width="35" height="35" fill="url(#g2)" opacity="0.9" rx="4"/>
+                            <rect x="10" y="55" width="35" height="35" fill="url(#g2)" opacity="0.9" rx="4"/>
+                            <rect x="55" y="55" width="35" height="35" fill="url(#g2)" opacity="0.8" rx="4"/>
+                            <!-- Center -->
+                            <circle cx="50" cy="50" r="15" fill="white" opacity="0.15"/>
+                            <circle cx="50" cy="50" r="10" fill="white"/>
+                        </svg><span class="bold-text">Tiny</span><span class="pixel-text">Pixels</span>
+                    </a>
+                    <p>Free online tool to compress, resize, and convert your images.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Help</h3>
+                    <a href="/faq.html">FAQ</a>
+                    <a href="/support.html">Support</a>
+                    <a href="/blog.html">Blog</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Company</h3>
+                    <a href="/about.html">About Us</a>
+                    <a href="/contact.html">Contact Us</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Legal</h3>
+                    <a href="/privacy.html">Privacy Policy</a>
+                    <a href="/terms.html">Terms of Service</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Follow Us</h3>
+                    <div class="social-links">
+                        <a href="#" target="_blank" rel="noopener"><i class="fab fa-twitter"></i></a>
+                        <a href="#" target="_blank" rel="noopener"><i class="fab fa-github"></i></a>
+                        <a href="#" target="_blank" rel="noopener"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 TinyPixels. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    <script src="main.js"></script>
+    <script src="blog.js"></script>
+</body>
+</html>

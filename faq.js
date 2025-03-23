@@ -6,17 +6,18 @@ document.addEventListener('DOMContentLoaded', () => {
         const question = item.querySelector('h3');
         const answer = item.querySelector('p');
         
-        // Wrap question in a button div
+        // Wrap question in a button div with better mobile support
         const questionDiv = document.createElement('div');
         questionDiv.className = 'faq-question';
         questionDiv.setAttribute('role', 'button');
         questionDiv.setAttribute('tabindex', '0');
+        questionDiv.setAttribute('aria-expanded', 'false');
         questionDiv.innerHTML = `
             ${question.outerHTML}
-            <i class="fas fa-chevron-down"></i>
+            <i class="fas fa-chevron-down" aria-hidden="true"></i>
         `;
         
-        // Wrap answer in a div
+        // Wrap answer in a div with ARIA support
         const answerDiv = document.createElement('div');
         answerDiv.className = 'faq-answer';
         answerDiv.setAttribute('aria-hidden', 'true');
@@ -27,7 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
         item.appendChild(questionDiv);
         item.appendChild(answerDiv);
         
-        // Add click and keyboard handlers
+        // Add click, touch and keyboard handlers
         const toggleAnswer = (e) => {
             if (e.type === 'keydown' && e.key !== 'Enter' && e.key !== ' ') return;
             e.preventDefault();
@@ -36,18 +37,24 @@ document.addEventListener('DOMContentLoaded', () => {
             
             // Close all other items
             faqItems.forEach(otherItem => {
-                otherItem.classList.remove('active');
-                otherItem.querySelector('.faq-answer').setAttribute('aria-hidden', 'true');
+                if (otherItem !== item) {
+                    otherItem.classList.remove('active');
+                    otherItem.querySelector('.faq-answer').setAttribute('aria-hidden', 'true');
+                    otherItem.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+                }
             });
             
             // Toggle current item
-            if (!isOpen) {
-                item.classList.add('active');
-                answerDiv.setAttribute('aria-hidden', 'false');
-            }
+            item.classList.toggle('active');
+            answerDiv.setAttribute('aria-hidden', !isOpen);
+            questionDiv.setAttribute('aria-expanded', !isOpen);
         };
 
         questionDiv.addEventListener('click', toggleAnswer);
         questionDiv.addEventListener('keydown', toggleAnswer);
+        questionDiv.addEventListener('touchend', (e) => {
+            e.preventDefault();
+            toggleAnswer(e);
+        });
     });
 });
