@@ -88,8 +88,39 @@
     <script defer src="main.js"></script>
     <script defer src="imageProcessor.js"></script>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXX"></script>
+
+    <!-- Performance Optimizations -->
+    <link rel="preload" href="/favicon.svg" as="image" type="image/svg+xml">
+    <link rel="preload" href="styles.css" as="style">
+    <link rel="preload" href="main.js" as="script">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+    <link rel="modulepreload" href="imageProcessor.js">
+    
+    <!-- Accessibility Improvements -->
+    <meta name="theme-color" content="#007AFF" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#1a1a1a" media="(prefers-color-scheme: dark)">
+    <link rel="alternate" type="application/rss+xml" title="TinyPixels Blog" href="/feed.xml">
+    
+    <!-- Skip Navigation Link -->
+    <style>
+        .skip-to-main {
+            position: absolute;
+            left: -9999px;
+            z-index: 999;
+            padding: 1em;
+            background-color: var(--primary);
+            color: white;
+            text-decoration: none;
+        }
+        .skip-to-main:focus {
+            left: 50%;
+            transform: translateX(-50%);
+        }
+    </style>
 </head>
 <body>
+    <a href="#main-content" class="skip-to-main">Skip to main content</a>
     <header class="header">
         <div class="container">
             <nav class="nav">
@@ -130,7 +161,7 @@
         </div>
     </header>
 
-    <main>
+    <main id="main-content">
         <section class="hero">
             <div class="container">
                 <h1 class="hero-title">

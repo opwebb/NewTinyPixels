@@ -242,3 +242,31 @@ RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
     H2PushResource add /styles.css
     H2PushResource add /main.js
 </IfModule>
+
+# Additional Performance Headers
+<IfModule mod_headers.c>
+    # Enable HTTP/2 Server Push
+    H2PushPriority * 31
+    
+    # Set Priority Hints
+    Header add Link '</styles.css>; rel=preload; as=style; priority=high'
+    Header add Link '</main.js>; rel=preload; as=script; priority=high'
+    
+    # Cache Control for Static Assets
+    <FilesMatch "\.(ico|pdf|flv|jpg|jpeg|png|gif|webp|js|css|swf|svg|woff|woff2)$">
+        Header set Cache-Control "public, max-age=31536000, immutable"
+    </FilesMatch>
+    
+    # Compress SVG files
+    AddType image/svg+xml .svg
+    AddOutputFilterByType DEFLATE image/svg+xml
+</IfModule>
+
+# Additional Caching Rules
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresDefault "access plus 1 month"
+    ExpiresByType image/webp "access plus 1 year"
+    ExpiresByType font/woff2 "access plus 1 year"
+    ExpiresByType application/javascript "access plus 1 year"
+</IfModule>

@@ -1858,6 +1858,17 @@ body {
     transform: var(--gpu);
 }
 
+img {
+    content-visibility: auto;
+    contain: paint;
+}
+
+.nav-links, .button, .card, .dropzone {
+    will-change: transform;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+}
+
 /* Smoother Animations */
 .logo:hover {
     transition: transform var(--transition-smooth);
@@ -3061,6 +3072,41 @@ body {
 @font-face {
     font-family: 'Arial';
     font-display: swap;
+}
+
+/* Accessibility Improvements */
+:focus {
+    outline: 3px solid var(--primary);
+    outline-offset: 2px;
+}
+
+:focus:not(:focus-visible) {
+    outline: none;
+}
+
+:focus-visible {
+    outline: 3px solid var(--primary);
+    outline-offset: 2px;
+}
+
+/* High Contrast Mode Support */
+@media (forced-colors: active) {
+    .button.primary {
+        border: 2px solid ButtonText;
+    }
+    
+    .nav-link:focus {
+        outline: 2px solid ButtonText;
+    }
+}
+
+/* Improve Color Contrast */
+.text-muted {
+    color: #595959;
+}
+
+[data-theme="dark"] .text-muted {
+    color: #a6a6a6;
 }
 
 /* Accessibility Improvements */
