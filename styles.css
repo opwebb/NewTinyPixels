@@ -1869,6 +1869,61 @@ img {
     backface-visibility: hidden;
 }
 
+img {
+    content-visibility: auto;
+    contain: size layout paint;
+    aspect-ratio: attr(width) / attr(height);
+}
+
+@media (max-width: 768px) {
+    /* Reduce CSS complexity for mobile */
+    .animation, .transition {
+        animation: none;
+        transition: none;
+    }
+    
+    /* Optimize paint operations */
+    .card, .button, .nav-links {
+        will-change: transform;
+        backface-visibility: hidden;
+        transform: translateZ(0);
+    }
+}
+
+/* Accessibility Improvements */
+* {
+    -webkit-tap-highlight-color: transparent;
+}
+
+:focus {
+    outline: 3px solid var(--primary);
+    outline-offset: 3px;
+}
+
+:focus-visible {
+    outline: 3px solid var(--primary);
+    outline-offset: 3px;
+}
+
+/* Best Practices */
+input, button, select, textarea {
+    touch-action: manipulation;
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+.button {
+    min-height: 44px;
+    min-width: 44px;
+    padding: 12px 24px;
+}
+
+@supports (hover: hover) {
+    .button:hover {
+        opacity: 0.9;
+    }
+}
+
 /* Smoother Animations */
 .logo:hover {
     transition: transform var(--transition-smooth);
@@ -2116,7 +2171,7 @@ img {
 .terms-section {
     margin-bottom: 2.5rem;
     padding-bottom: 2.5rem;
-    border-bottom: 1px solid var(--border);
+    border-bottom: 1px solid var (--border);
 }
 
 .terms-section:last-child {

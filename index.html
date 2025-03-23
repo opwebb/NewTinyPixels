@@ -118,6 +118,22 @@
             transform: translateX(-50%);
         }
     </style>
+
+    <!-- Mobile Optimizations -->
+    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+    <link rel="preload" href="/favicon.svg" as="image" fetchpriority="high">
+    <link rel="preload" href="styles.css" as="style" fetchpriority="high">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
+    <meta name="color-scheme" content="light dark">
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#007AFF">
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#1a1a1a">
+    
+    <!-- Remove render-blocking resources -->
+    <link rel="stylesheet" href="styles.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="styles.css"></noscript>
+    
+    <!-- Preconnect to required origins -->
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
 </head>
 <body>
     <a href="#main-content" class="skip-to-main">Skip to main content</a>
