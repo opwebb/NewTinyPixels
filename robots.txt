@@ -1,4 +1,26 @@
 User-agent: *
 Allow: /
+Disallow: /admin/
+Disallow: /private/
+Disallow: /includes/
+Disallow: /tmp/
+Disallow: /logs/
+Disallow: /backup/
+Disallow: /*.json$
+Disallow: /*.xml$
+Disallow: /*.txt$
+Disallow: /*?*
 
+# Security sensitive paths
+Disallow: /cgi-bin/
+Disallow: /includes/
+Disallow: /admin/
+Disallow: /backend/
+Disallow: /config/
+Disallow: /temp/
+
+# Sitemap location
 Sitemap: https://tinypixels.pages.dev/sitemap.xml
+
+# Crawl delay to prevent server overload
+Crawl-delay: 10
